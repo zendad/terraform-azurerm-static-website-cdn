@@ -80,7 +80,7 @@ resource "random_string" "unique" {
 
 resource "azurerm_cdn_endpoint" "cdn-endpoint" {
   count                         = var.enable_static_website && var.enable_cdn_profile ? 1 : 0
-  name                          = var.cdn_sku_profile
+  name                          = var.cdn_name
   profile_name                  = azurerm_cdn_profile.cdn-profile.0.name
   location                      = local.location
   resource_group_name           = local.resource_group_name
