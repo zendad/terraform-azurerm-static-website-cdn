@@ -55,7 +55,7 @@ resource "azurerm_storage_account" "storeacc" {
 resource "null_resource" "copyfilesweb" {
   count = var.enable_static_website ? 1 : 0
   provisioner "local-exec" {
-    command = "az storage blob upload-batch --no-progress --account-name ${azurerm_storage_account.storeacc.name} -s ${var.static_website_source_folder} -d '$web' --output none"
+    command = "az storage blob upload-batch --no-progress --account-name ${azurerm_storage_account.storeacc.name} --account-key ${azurerm_storage_account.storeacc.primary_access_key}  -s ${var.static_website_source_folder} -d '$web' --output none"
   }
 }
 
